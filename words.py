@@ -1,4 +1,4 @@
-input = """\
+input = """
 In the vein of The Time Traveler’s Wife and Life After Life, 
 The Invisible Life of Addie LaRue is New York Times bestselling author V. E. Schwab’s
 genre-defying tour de force. A Life No One Will Remember. A Story You Will Never Forget.
@@ -11,5 +11,33 @@ bookstore and he remembers her name. """
 
 # Problem: Find the # of capitalized words in this paragraph
 
+# TODO: Any improvements to this algo?
+# TODO: Anywhere we can do more pythonic code?
+# TODO: Encrypt the secret message
+# TODO: Email secret message to friend, give them the key to decrpyt message
+
 def find_capitalized_letters():
-    return answer
+    
+    words = input.replace('\n',' ') 
+    
+    clean_words = words.split(' ')
+
+    #for i in range(len(clean_words)):
+    #    print(clean_words[i])
+    counter = 0
+    cap = []
+
+    for word in clean_words:
+        if word == '':
+            continue
+        elif word[0].isupper() == True:
+            cap.append(word) 
+            counter += 1
+    
+    #we're joining all the capital words together to find a potential secret message
+    secret = ' '.join(cap) 
+    print(secret)
+
+    return counter
+
+print(find_capitalized_letters())
