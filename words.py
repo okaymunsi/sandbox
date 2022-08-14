@@ -13,8 +13,16 @@ bookstore and he remembers her name. """
 
 # TODO: Any improvements to this algo?
 # TODO: Anywhere we can do more pythonic code?
+
+# TODO: Put several messages into several different files on disk,
+#       then, open them one at a time, and find the secret
+#       look at messages/ dir
+
 # TODO: Encrypt the secret message
+# TODO: Find how many times each lower case letter starts a word. 
+# TODO: Find all the unique words in the string
 # TODO: Email secret message to friend, give them the key to decrpyt message
+ 
 
 def find_capitalized_letters():
     
