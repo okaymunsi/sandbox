@@ -1,5 +1,4 @@
-input = """
-In the vein of The Time Traveler’s Wife and Life After Life, 
+input = """In the vein of The Time Traveler’s Wife and Life After Life, 
 The Invisible Life of Addie LaRue is New York Times bestselling author V. E. Schwab’s
 genre-defying tour de force. A Life No One Will Remember. A Story You Will Never Forget.
 France, 1714: in a moment of desperation, a young woman makes a Faustian bargain to live 
@@ -22,16 +21,16 @@ bookstore and he remembers her name. """
 # TODO: Find how many times each lower case letter starts a word. 
 # TODO: Find all the unique words in the string
 # TODO: Email secret message to friend, give them the key to decrpyt message
- 
+def find_new_file():
+    with open("messages/acleanwelllightedplace.log", 'r') as f:
+        input = f.read()
+    return input
 
-def find_capitalized_letters():
+def find_secret_message(secret_file):
     
-    words = input.replace('\n',' ') 
-    
+    words = secret_file.replace('\n',' ') 
     clean_words = words.split(' ')
 
-    #for i in range(len(clean_words)):
-    #    print(clean_words[i])
     counter = 0
     cap = []
 
@@ -41,11 +40,13 @@ def find_capitalized_letters():
         elif word[0].isupper() == True:
             cap.append(word) 
             counter += 1
-    
+
     #we're joining all the capital words together to find a potential secret message
-    secret = ' '.join(cap) 
-    print(secret)
+    rm_secret_repeats = list(set(cap))
+    secret = ' '.join(rm_secret_repeats)
+    
+    return secret, counter
 
-    return counter
-
-print(find_capitalized_letters())
+content = find_new_file()
+found_message, num_words = find_secret_message(content)
+print(found_message)
