@@ -21,17 +21,27 @@ bookstore and he remembers her name. """
 # TODO: Find how many times each lower case letter starts a word. 
 # TODO: Find all the unique words in the string
 # TODO: Email secret message to friend, give them the key to decrpyt message
-def find_new_file():
-    with open("messages/acleanwelllightedplace.log", 'r') as f:
-        input = f.read()
-    return input
+
+file_paths = ["messages/acleanwelllightedplace.log","messages/punk57.log","messages/thetyger.log"]
+
+def find_new_file(path):
+    hold_guts = ""
+
+    for i in path:
+        with open(i, 'r') as f:
+            input = f.read()
+        hold_guts += input
+    
+    return hold_guts
+        
 
 def find_secret_message(secret_file):
-    
+  
     words = secret_file.replace('\n',' ') 
     clean_words = words.split(' ')
 
-    counter = 0
+    counter_upper = 0
+    counter_lower = 0
     cap = []
 
     for word in clean_words:
@@ -39,14 +49,19 @@ def find_secret_message(secret_file):
             continue
         elif word[0].isupper() == True:
             cap.append(word) 
-            counter += 1
+            counter_upper += 1
+        elif word[0].isupper() == False:
+            counter_lower += 1
+
+    filtered_cap = []
+    [filtered_cap.append(i) for i in cap if i not in filtered_cap]
 
     #we're joining all the capital words together to find a potential secret message
-    rm_secret_repeats = list(set(cap))
-    secret = ' '.join(rm_secret_repeats)
+    secret = ' '.join(filtered_cap)
     
-    return secret, counter
+    return secret, counter_upper, counter_lower
 
-content = find_new_file()
-found_message, num_words = find_secret_message(content)
-print(found_message)
+content = find_new_file(file_paths)
+found_message, num_uppercase, num_lowercase = find_secret_message(content)
+
+print(found_message, f"\nNumber of uppercase words: {num_uppercase}", f"\nNumber of lowercase words: {num_lowercase}")
