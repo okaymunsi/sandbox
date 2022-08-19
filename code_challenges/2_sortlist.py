@@ -29,7 +29,33 @@ def sortlist(numbers, order):
     elif order == "none":
         print(f"no change: {numbers}")
 
-    return
+    return numbers
 
-final_number, final_order = userinput()
-sortlist(final_number, final_order)
+def munty():
+    final_number, final_order = userinput()
+    sortlist(final_number, final_order)
+
+def solution(numbers=[], order=None):
+    answer = None
+    if order == 'asc':
+        answer = sorted(numbers)
+    elif order == 'desc':
+        answer = sorted(numbers, reverse=True)
+    elif order is None:
+        answer = numbers
+    else:
+        print(f'Warning: "{order}" is not one of "asc", "desc", or None')
+        exit(1) # Typically raise exception
+    return answer
+
+def munsi():
+    # Random Testing
+    random_order = random.choice(['asc', 'desc', None, 0])
+    random_numbers = [random.randint(-100, 100) for i in range(0, random.randint(0, 100))]
+    print(f'Order: {random_order}')
+    print(f'Original Number: {random_numbers}')
+    answer = solution(random_numbers, random_order)
+    print()
+    print(answer)
+
+munsi()

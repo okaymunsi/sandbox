@@ -3,6 +3,9 @@ Write a function in Python that accepts a list of any length that contains a mix
 The function should return a list with only the integers in the original list in the same order.
 
 """
+
+import random
+
 def input_list():
     # input a list of elements into a variable
     # if the type of the variable isn't a list, keep on looping (use while)
@@ -21,6 +24,28 @@ def input_list():
     
     return mix_elements
 
+def input_list_pythonic():
+    # input a list of elements into a variable
+    # if the type of the variable isn't a list, keep on looping (use while)
+    # check if elements that are numbers, are not negative
+    
+    mix_elements = input("Enter a list of elements mixed with numbers and strings (please separate by \",\"):")
+    mix_elements = mix_elements.split(",")
+
+    integers = []
+    for element in mix_elements:
+        element = element.strip()
+        if element == '':
+            continue
+
+        if element.startswith('-'):
+            print(f"Warning: {element} is a negative number! Skipping..")
+            continue
+
+        if element.isdigit():
+            integers.append(int(element))
+    return integers
+
 def num_list(elem):
     numbers_only = []
     for i in elem:
@@ -30,4 +55,21 @@ def num_list(elem):
     print(numbers_only)
     return
 
-num_list(input_list())
+def munty():
+    num_list(input_list())
+
+def solution(input_list=[]):
+    answer = []
+
+    for element in input_list:
+        if isinstance(element, int):
+            answer.append(element)
+
+    return answer
+
+def munsi():
+    answer = solution(['a', 1, '1', 'b', 'c', 3, -2, 'z', 0])
+    print(answer)
+
+#munsi()
+munty()
